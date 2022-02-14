@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Sign Up</title>
+</head>
+
+<style>
+    body{
+        text-align: center;
+    }
+</style>
+
+<body>
+
+    {% for message in messages %} 
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    {% endfor %}
+    
+    <br>
+    <h2>Sign Up</h2>
+
+    <br>
+    <form action="/signup" method='post'>
+        {% csrf_token %}
+        <label for="">Username </label>
+        <input type="text" name="username" id="username" placeholder="Create a username">
+        <br>
+        <label for="">First Name</label>
+        <input type="text" name="fname" id="fname" placeholder="First Name">
+        <br>
+        <label for="">Last Name</label>
+        <input type="text" name="lname" id="lname" placeholder="Last Name">
+        <br>
+        <label for="">Email</label>
+        <input type="text" name="email" id="email" placeholder="Email Address">
+        <br>
+        <label for="">Password</label>
+        <input type="text" name="pass1" id="pass1" placeholder="Create Password">
+        <br>
+        <label for="">Confirm Password</label>
+        <input type="text" name="pass2" id="pass2" placeholder="Confirm Password">
+        <br><br>
+        <button type="submit" class="btn btn-primary" >Sign Up</a>
+    </form>
+</body>
+</html>

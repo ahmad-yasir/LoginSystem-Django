@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<style>
+    body{
+        text-align: center;
+    }
+</style>
+
+<body>
+    <br>
+
+    <h3>Welcome to Django Organization</h3><br>
+
+    <form action="/signin" method='POST'>
+        {% csrf_token %}
+        {% for message in messages %} 
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>Message:</strong> {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        {% endfor %}
+    
+        {% if user.is_authenticated %} 
+        <h3>Hello {{ request.user.first_name }}</h3>
+        <h4>You are successfully logged in.</h4>
+        <a href="/signout" class="btn btn-danger" role="button" aria-pressed="true">Sign Out</a>
+        
+        {% else %}
+        <br>
+    </form>
+    
+    <div class="text-center">
+        <a href="/signup" class="btn btn-primary" role="button" aria-pressed="true">Sign Up</a>
+        <a href="/signin" class="btn btn-success" role="button" aria-pressed="true"> Sign In</a>   
+    </div>
+    {% endif %}   
+
+</body>
+</html>
